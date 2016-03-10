@@ -10,3 +10,10 @@ unzip awscli-bundle.zip
 $ ./awscli-bundle/install -b /usr/local/bin/aws
 aws configure
 ```
+
+Generate graph for aws setup
+``` bash
+brew install graphviz
+terraform graph | dot -Tpng > graph.png
+```
+![graph](graph.png)
