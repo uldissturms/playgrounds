@@ -17,3 +17,8 @@ brew install graphviz
 terraform graph | dot -Tpng > graph.png
 ```
 ![graph](graph.png)
+
+Output variables
+```bash
+terraform output
+```

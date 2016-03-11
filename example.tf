@@ -14,3 +14,7 @@ resource "aws_instance" "web" {
 resource "aws_eip" "ip" {
   instance = "${aws_instance.web.id}"
 }
+
+output "ip" {
+  value = "${aws_eip.ip.public_ip}"
+}
