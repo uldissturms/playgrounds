@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "web" {
-  ami = "ami-971a65e0"
+  ami = "${lookup(var.amis, var.region)}"
   instance_type = "t1.micro"
   key_name = "terraform"
   provisioner "local-exec" {
