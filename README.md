@@ -19,6 +19,11 @@ terraform graph | dot -Tpng > graph.png
 ![graph](graph.png)
 
 Output variables
-```bash
+``` bash
 terraform output
+```
+
+Get modules
+```bash
+terraform get
 ```
