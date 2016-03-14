@@ -1,3 +1,8 @@
+module "child" {
+  source = "./child"
+  foo = "bar"
+}
+
 provider "aws" {
   region = "${var.region}"
 }
