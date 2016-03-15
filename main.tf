@@ -1,6 +1,5 @@
-module "child" {
-  source = "./child"
-  foo = "bar"
+module "cloudtrail" {
+  source = "./cloudtrail"
 }
 
 provider "aws" {
