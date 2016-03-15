@@ -1,7 +1,3 @@
-module "cloudtrail" {
-  source = "./cloudtrail"
-}
-
 provider "aws" {
   region = "${var.region}"
 }
@@ -28,4 +24,12 @@ resource "aws_security_group" "terraform" {
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+module "cloudtrail" {
+  source = "./cloudtrail"
+}
+
+module "cloudwatch" {
+  source = "./cloudwatch"
 }
