@@ -33,3 +33,7 @@ module "cloudtrail" {
 module "cloudwatch" {
   source = "./cloudwatch"
 }
+
+module "dynamodb" {
+  source = "./dynamodb"
+}
