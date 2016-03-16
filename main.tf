@@ -37,3 +37,7 @@ module "cloudwatch" {
 module "dynamodb" {
   source = "./dynamodb"
 }
+
+module "ecs" {
+  source = "./ecs"
+}

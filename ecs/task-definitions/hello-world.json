@@ -1,0 +1,11 @@
+[{
+    "name": "hello-world",
+    "image": "uldissturms/nodejs",
+    "memory": 100,
+    "portMappings": [{
+      "containerPort": 3000,
+      "hostPort": 8080
+      }
+    ]
+  }
+]
