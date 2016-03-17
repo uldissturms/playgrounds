@@ -1,10 +1,10 @@
 [{
     "name": "hello-world",
-    "image": "uldissturms/nodejs",
+    "image": "kitematic/hello-world-nginx",
     "memory": 100,
     "portMappings": [{
-      "containerPort": 3000,
-      "hostPort": 8080
+      "containerPort": 80,
+      "hostPort": 80
       }
     ]
   }

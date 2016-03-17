@@ -24,6 +24,11 @@ terraform output
 ```
 
 Get modules
-```bash
+``` bash
 terraform get
+```
+
+View container instances
+``` bash
+aws ecs list-container-instances
 ```
