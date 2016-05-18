@@ -1,0 +1,17 @@
+<div ng-controller="SearchCtrl" class="container-fluid text-center">
+    <h1>Proxy my google search</h1>
+    <p>
+        <input id="q" ng-model="query" type="text" placeholder="enter search phrase" />
+    </p>
+    <p>
+    <button id="search" class="btn btn-lg btn-primary" type="button" ng-click="search()">Search</button>
+    </p>
+    <p>
+        <div ng-if="error">{{error}}</div>
+        <ul ng-if="!error" style="list-style-type:none">
+            <li ng-repeat="result in results">
+               <a class="result" href="{{result.url}}">{{result.text}}</a>
+            </li>
+        </ul>
+    </p>
+</div>
