@@ -1,0 +1,35 @@
+nodes = [1, 2, 3, 4] 
+
+def name_for node_index
+  'node' + (node_index + 1).to_s
+end
+
+ANSIBLE_GROUPS = {
+  "master" => ["node1"],
+  "nodes" => nodes.map { |i| name_for i },
+  "all_groups:children" => ["master", "nodes"]
+}
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "bento/centos-7.1"
+
+  config.vm.define "node1" do |node1|
+    node1.vm.network "private_network", ip: "192.168.33.10"
+    node1.vm.hostname = "node1"
+    node1.vm.provision "ansible" do |ansible|
+      ansible.playbook = "playbook.yml"
+      ansible.groups = ANSIBLE_GROUPS
+    end
+  end
+ 
+  nodes.each { |i| 
+    config.vm.define name_for i do |node|
+      node.vm.network "private_network", ip: "192.168.33.1#{i}"
+      node.vm.hostname = name_for i
+      node.vm.provision "ansible" do |ansible|
+        ansible.playbook = "playbook.yml"
+        ansible.groups = ANSIBLE_GROUPS
+      end
+   end
+ }
+end
