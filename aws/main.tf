@@ -34,6 +34,10 @@ resource "aws_elb" "web" {
   }
 }
 
+resource "aws_route53_zone" "primary" {
+  name = "uldissturms.com"
+}
+
 resource "aws_security_group" "internal_web" {
   name = "internal_web"
   ingress {
