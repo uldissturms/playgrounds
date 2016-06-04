@@ -5,11 +5,11 @@ Simple demo how environment varibles can be used from docker run command to alte
 
 `docker run hello` - run container.
 
-`>>> Hello, World`
+`>>> Hello, World from Node`
 
-`docker run -e "HELLO=Sun" hello` - run container by passing environment variables for altered program output.
+`docker run -e "HELLO=Sun" -e "FROM=Moon" hello` - run container by passing environment variables for altered program output.
 
-`>>> Hello, Sun`
+`>>> Hello, Sun from Moon`
 
 `docker inspect hello` can be run to verify exactly what commands and from where will be run on build and run.
 
@@ -19,7 +19,8 @@ Simple demo how environment varibles can be used from docker run command to alte
     "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
     "NPM_CONFIG_LOGLEVEL=info",
     "NODE_VERSION=6.2.0",
-    "HELLO=World"
+    "HELLO=World",
+    "FROM=Node"
 ],
 
 "Cmd": [
