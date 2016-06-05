@@ -1,16 +1,27 @@
 Develop applications inside docker using volumes
 ---
+Given a docker image named _development_ (`build.sh`).
 
-`cat src/app.js` - given a simple console app
+And a simple console app that outpouts "I am running".
 
-` >>> console.log('I am running')`
+`console.log('I am running')`
 
-`docker run -v $PWD/src:/src development` - when app is mounted from host directory into container and run:
+And a docker run script that defines `src` directory as an attached volume to container in `dev.sh` script.
 
-`>>> I am running`
+`docker run -v $PWD/src:/src development`
 
-`echo "console.log('You are running')" > src/app.js` - when app is updated
+Then content changes to src/app.js file are visible to container and trigger nodemon to restart console app.
 
-`docker run -v $PWD/src:/src development` - next run executes updated app.
-
-`>>> You are running`
+Try it!
+```
+[nodemon] 1.9.2
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching: *.*
+[nodemon] starting `node app.js`
+I am running
+[nodemon] clean exit - waiting for changes before restart
+[nodemon] restarting due to changes...
+[nodemon] starting `node app.js`
+You are running
+[nodemon] clean exit - waiting for changes before restart
+```
