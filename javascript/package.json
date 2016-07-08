@@ -1,0 +1,17 @@
+{
+  "name": "javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape **/*.spec.js | tap-min -s",
+    "test:watch": "nodemon -x 'npm run test -s'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.9.2",
+    "tap-min": "^1.1.0",
+    "tape": "^4.6.0"
+  }
+}
