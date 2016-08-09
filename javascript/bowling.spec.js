@@ -47,13 +47,11 @@ function pipe (...fns) {
 
 function toFrames (rolls, frames = [], index = 0) {
   if (lastFrame(index)) {
-    frames.push(frame(rolls, index))
-    return frames
+    return [...frames, frame(rolls, index)]
   }
 
   const rollsInFrame = isStrike(rolls) ? rolls.slice(0, 1) : rolls.slice(0, 2)
-  frames.push(frame(rollsInFrame, index))
-  return toFrames(rolls.slice(rollsInFrame.length), frames, index + 1)
+  return toFrames(rolls.slice(rollsInFrame.length), [...frames, frame(rollsInFrame, index)], index + 1)
 }
 
 function lastFrame (index) {
