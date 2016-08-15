@@ -1,0 +1,16 @@
+{
+  "name": "webpack-loaders",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && npm run test && node ./bundle.js",
+    "build": "webpack",
+    "test": "tape *.spec.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tape": "^4.6.0"
+  }
+}
