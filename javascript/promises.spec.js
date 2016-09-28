@@ -11,7 +11,7 @@ test('promise is rejected when logic inside it throws exception', t => {
   })
 })
 
-test('promise handles most relevevant catch block', t => {
+test('promise handles most relevant catch block', t => {
   new Promise((resolve, reject) => {
     throw new Error('base exception')
   })
@@ -29,7 +29,7 @@ test('promise handles most relevevant catch block', t => {
   })
 })
 
-test('promise stays rejected after catch block', t => {
+test('promise gets resolved after exception is handled', t => {
   new Promise((resolve, reject) => {
     throw new Error('exception')
   })
@@ -37,7 +37,7 @@ test('promise stays rejected after catch block', t => {
     console.log('exception processed')
   })
   .then(() => {
-    t.pass('promise was rejected but continues after catch block')
+    t.pass('handling a rejected promise makes it resolved... interesting...')
     t.end()
   })
 })
