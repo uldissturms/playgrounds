@@ -1,3 +1,4 @@
+// great explanation here: http://www.integralist.co.uk/posts/js-recursion.html
 const test = require('tape')
 
 test('use trampoline outside function to fix missing javascript TCO', t => {
