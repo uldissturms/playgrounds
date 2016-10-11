@@ -1,3 +1,4 @@
+// credits: https://gist.github.com/Gozala/1697037
 function tco (f) {
   var value
   var active = false
