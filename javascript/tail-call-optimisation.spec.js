@@ -1,3 +1,10 @@
+const test = require('tape')
+
+test('tail call optimisation', t => {
+  t.is(sum(1, 100000), 100001)
+  t.end()
+})
+
 // credits: https://gist.github.com/Gozala/1697037
 function tco (f) {
   var value
@@ -21,13 +28,10 @@ function tco (f) {
   }
 }
 
-var sum = tco(function (x, y) {
+const sum = tco(function (x, y) {
   if (y > 0) {
     return sum(x + 1, y - 1)
   } else {
     return x
   }
 })
-
-const result = sum(1, 2500000)
-console.log('sum is:', result)
