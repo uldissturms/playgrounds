@@ -41,3 +41,19 @@ test('promise gets resolved after exception is handled', t => {
     t.end()
   })
 })
+
+test('nested promise errors bubble to top most promise', t => {
+  Promise.resolve(42)
+  .then(() => new Promise((resolve, reject) => {
+      throw new Error('exception')
+    })
+  )
+  .then(() => {
+    t.fail('exception did not bubble')
+  })
+  .catch(e => {
+    console.log('exception from nested promise handled')
+    t.pass('exception is handled from nested promises')
+    t.end()
+  })
+})
