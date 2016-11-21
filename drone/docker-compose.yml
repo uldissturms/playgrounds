@@ -1,0 +1,20 @@
+version: '2'
+services:
+  drone:
+    image: drone/drone:0.4
+    env_file: ./drone.env
+    volumes:
+      - /var/lib/drone:/var/lib/drone
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "80:8000"
+    depends_on:
+      - gogs
+    restart: always
+  gogs:
+    image: gogs/gogs
+    volumes:
+      - /tmp/gogs:/data
+    ports:
+      - "2222:22"
+      - "3000:3000"
