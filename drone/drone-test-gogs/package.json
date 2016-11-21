@@ -1,0 +1,17 @@
+{
+  "name": "drone-test-gogs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://localhost:3000/uldis/drone-test-gogs.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
