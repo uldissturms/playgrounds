@@ -1,20 +1,47 @@
 version: '2'
 services:
-  drone:
-    image: drone/drone:0.4
-    env_file: ./drone.env
-    volumes:
-      - /var/lib/drone:/var/lib/drone
-      - /var/run/docker.sock:/var/run/docker.sock
+  drone-server:
+    image: drone/drone:0.5
     ports:
       - "80:8000"
-    depends_on:
-      - gogs
-    restart: always
-  gogs:
-    image: gogs/gogs
+    networks:
+      - drone
     volumes:
-      - /tmp/gogs:/data
-    ports:
-      - "2222:22"
-      - "3000:3000"
+      - ./drone-data:/var/lib/drone/
+    env_file: ./drone.env
+    environment:
+      I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
+      I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
+      DRONE_SERVER_ADDR: ":8000"
+      DRONE_DEBUG: "true"
+      # CHANGEME: Randomly generate something at least 24 characters long with
+      # a password generator.
+      DRONE_SECRET: "replace-this-with-your-own-random-secret"
+      DRONE_DATABASE_DRIVER: sqlite3
+      DRONE_DATABASE_DATASOURCE: /var/lib/drone/drone.sqlite
+      DRONE_OPEN: "true"
+      DRONE_ORGS: ""
+      # CHANGEME: Replace with Github username(s) to grant admin privs to.
+      DRONE_ADMIN: admin,users,here,uldissturms
+      DRONE_ADMIN_ALL: "false"
+      DRONE_GITHUB: "true"
+  drone-agent:
+    image: drone/drone:0.5
+    command: agent
+    depends_on:
+      - drone-server
+    networks:
+      - drone
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      I_UNDERSTAND_I_AM_USING_AN_UNSTABLE_VERSION: "true"
+      I_AGREE_TO_FIX_BUGS_AND_NOT_FILE_BUGS: "true"
+      DRONE_SERVER: ws://drone-server:8000/ws/broker
+      DRONE_DEBUG: "true"
+      # CHANGEME: Change this to match the DRONE_SECRET value specified in your
+      # drone-server container above.
+      DRONE_SECRET: "replace-this-with-your-own-random-secret"
+networks:
+  drone:
+    driver: bridge
