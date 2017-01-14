@@ -13,3 +13,5 @@ export DRONE_TOKEN=...
 ```
 
 check by running `drone info`
+
+more info [here](http://readme.drone.io)
