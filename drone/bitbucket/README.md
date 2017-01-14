@@ -7,7 +7,3 @@ provide drone env settings in _drone.env_ file for:
 use [ngrok](https://ngrok.com) to expose local drone
 
 run: ```docker-compose up``` and navigate to http://xxxxx.ngrok.io
-
-### to make bitbucket webhook work:
-- update webhook url to the public one
-- make sure webhook payload is set to `application/json`
