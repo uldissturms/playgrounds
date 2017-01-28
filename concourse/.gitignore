@@ -2,3 +2,4 @@ database
 worker-keys
 web-keys
 .vagrant
+.envrc
