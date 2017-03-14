@@ -1,0 +1,19 @@
+version: '3'
+services:
+  server:
+    image: vault
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=16a9d37c-d7ac-d7e7-d473-616c7b7f42ca
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK
+  client:
+    image: vault
+    depends_on:
+      - server
+    environment:
+      - SKIP_SETCAP=true
+      - VAULT_ADDR=http://server:8200
+      - VAULT_TOKEN=16a9d37c-d7ac-d7e7-d473-616c7b7f42ca
+    command: version
