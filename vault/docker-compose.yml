@@ -18,4 +18,5 @@ services:
       - VAULT_TOKEN=16a9d37c-d7ac-d7e7-d473-616c7b7f42ca
     volumes:
       - ./client:/client
+      - ./certs:/certs
     command: version
