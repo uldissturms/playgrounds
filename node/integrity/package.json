@@ -1,0 +1,20 @@
+{
+  "name": "integrity",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "postshrinkwrap": "./scripts/fix-volatile-integrities"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "is-array": "^1.0.1"
+  },
+  "devDependencies": {
+    "tape": "^4.9.0",
+    "nodemon": "^1.17.2"
+  }
+}

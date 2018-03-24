@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+const packageLockFile = '../package-lock.json'
+const path = require('path')
+const fs = require('fs')
+const lock = require(packageLockFile)
+
+const volatilePackages = [
+  'is-array'
+]
+
+const toObject = (acc, cur) => Object.assign(acc, cur)
+
+const omit = (key, obj) => Object.keys(obj)
+  .filter(k => k !== key)
+  .map(k => ({[k]: obj[k]}))
+  .reduce(toObject, {})
+
+const removeIntegrityForVolatilePackages = dependencies => d => ({
+  [d]: volatilePackages.includes(d)
+  ? omit('integrity', dependencies[d])
+  : dependencies[d]
+  })
+
+const dependencies = Object.keys(lock.dependencies)
+  .map(removeIntegrityForVolatilePackages(lock.dependencies))
+  .reduce(toObject, {})
+
+const fixed = Object.assign({}, lock, {dependencies})
+const json = JSON.stringify(fixed, undefined, 2)
+fs.writeFileSync(path.join(__dirname, packageLockFile), json + '\n')
