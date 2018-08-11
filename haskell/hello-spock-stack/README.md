@@ -13,3 +13,5 @@ extra-deps:
  - Spock-core-0.13.0.0
  - reroute-0.5.0.0
 ```
+
+### [spock getting started docs](https://www.spock.li/tutorials/getting-started)
