@@ -1,0 +1,10 @@
+{
+  "name": "debug",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "debug": "node --inspect-brk=127.0.0.1 index.js",
+    "debug:ts": "tsc --sourceMap --outDir dest index.ts && node --inspect-brk=127.0.0.1 dest/index.js"
+  }
+}
