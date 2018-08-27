@@ -1,0 +1,22 @@
+service: hello-api-gateway
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+plugins:
+  - serverless-offline
+
+functions:
+  api:
+    handler: api.handler
+    events:
+      - http: GET /api
+  todos:
+    handler: todos.handler
+    events:
+      - http: GET /api/todos
+  todo:
+    handler: todo.handler
+    events:
+      - http: GET /api/todo/{id}

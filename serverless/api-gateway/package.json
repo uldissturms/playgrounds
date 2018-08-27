@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "serverless-http": "^1.6.0",
+    "serverless-offline": "^3.25.9"
+  },
+  "scripts": {
+    "dev": "sls offline start --port 4500"
+  }
+}
