@@ -1,14 +1,19 @@
 {
   "devDependencies": {
-    "serverless-http": "^1.6.0",
+    "jest": "^23.5.0",
     "serverless-offline": "^3.25.9",
     "serverless-webpack": "^5.2.0",
+    "supertest": "^3.1.0",
     "webpack": "^4.17.1"
   },
   "scripts": {
-    "dev": "sls offline start --port 4500"
+    "dev": "sls offline start --port 4500 & yarn",
+    "dev:watch": "yarn dev & yarn test:watch",
+    "test": "jest",
+    "test:watch": "yarn test -- --watch"
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "serverless-http": "^1.6.0"
   }
 }
