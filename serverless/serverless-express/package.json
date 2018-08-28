@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "serverless-http": "^1.6.0",
+    "serverless-offline": "^3.25.9",
+    "serverless-webpack": "^5.2.0",
+    "webpack": "^4.17.1"
+  },
+  "scripts": {
+    "dev": "sls offline start --port 4500"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
