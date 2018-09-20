@@ -29,3 +29,18 @@ note: `--inspect-brk` works more reliably with chrome dev tools (v68)
 ### walkthrough
 
 https://blog.risingstack.com/how-to-debug-a-node-js-app-in-a-docker-container/
+
+### troubleshooting
+
+* vs code debugger might not work with webpack relative paths
+
+  paste the below code snippet to address the issue
+
+  ```
+    output: {
+      libraryTarget: 'commonjs',
+      path: path.resolve(__dirname, '.webpack'),
+      filename: '[name].js',
+      devtoolModuleFilenameTemplate: "[absolute-resource-path]"
+    }
+  ```
