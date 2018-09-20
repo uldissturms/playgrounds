@@ -1,0 +1,39 @@
+service: offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: eu-west-1
+
+functions:
+  offline:
+    handler: handler.offline
+    events:
+      - http: GET /
+
+resources:
+  Resources:
+    items:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: items
+        AttributeDefinitions:
+          - AttributeName: value
+            AttributeType: S
+        KeySchema:
+          - AttributeName: value
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+custom:
+  dynamodb:
+    start:
+      port: 8080
+      inMemory: true
+      migrate: true
