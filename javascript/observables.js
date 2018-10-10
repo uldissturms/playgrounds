@@ -1,4 +1,5 @@
-// implementations take from https://frontendmasters.com/courses/advanced-async-js
+// implementations taken from https://frontendmasters.com/courses/advanced-async-js
+// reference: https://jsbin.com/nururar/edit?js,console
 
 class Observable {
   constructor (subscribe) {
@@ -12,7 +13,7 @@ class Observable {
 const timeout = time =>
   new Observable(o => {
     const handle = setTimeout(() => {
-      o.next()
+      o.next(time)
       o.complete()
     }, time)
 
@@ -51,6 +52,33 @@ const map = (fn, observer) =>
       }
     })
   )
+
+const concat = (...observables) =>
+  new Observable(o => {
+    let current
+    const processNth = idx => {
+      current = observables[idx].subscribe({
+        next (x) {
+          o.next(x)
+        },
+        complete () {
+          if (idx === observables.length - 1) {
+            return o.complete()
+          }
+          processNth(idx + 1)
+        },
+        error (e) {
+          o.error(e)
+        }
+      })
+    }
+    processNth(0)
+    return {
+      unsubscribe () {
+        current.unsubscribe()
+      }
+    }
+  })
 
 const log = name => ({
   next (x) {
@@ -106,3 +134,9 @@ elem.trigger('click', {x: 3})
 elem.trigger('click', {x: 4})
 mapSub.unsubscribe()
 elem.trigger('click', {x: 5})
+
+// concat
+const concatObs = concat(
+  timeout(500), timeout(1), timeout(2), timeout(3)
+)
+concatObs.subscribe(log('concat'))
