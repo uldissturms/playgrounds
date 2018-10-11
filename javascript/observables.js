@@ -122,6 +122,31 @@ const retry = (num, observable) =>
     }
   })
 
+const of = value =>
+  new Observable(o => {
+    o.next(value)
+    o.complete()
+
+    return { unsubscribe () { } }
+  })
+
+const filter = (fn, observable) =>
+  new Observable(o =>
+    observable.subscribe({
+      next (x) {
+        if (fn(x)) {
+          o.next(x)
+        }
+      },
+      complete () {
+        o.complete()
+      },
+      error (e) {
+        o.error(e)
+      }
+    })
+  )
+
 const log = name => ({
   next (x) {
     console.log(`[${name}] [next] ${JSON.stringify(x)}`)
@@ -145,15 +170,13 @@ const fakeElem = () => {
   return {
     addEventListener (e, h) {
       if (handlers[e]) {
-        handlers[e].push(h)
+        handlers[e].add(h)
       } else {
-        handlers[e] = [h]
+        handlers[e] = new Set([h])
       }
     },
     removeEventListener (e, h) {
-      handlers[e] = (handlers[e] || []).filter(x =>
-        x !== h
-      )
+      handlers[e].delete(h)
     },
     trigger (e, data) {
       for (const handler of handlers[e] || []) {
@@ -162,6 +185,7 @@ const fakeElem = () => {
     }
   }
 }
+
 const elem = fakeElem()
 const clicks = fromEvent(elem, 'click')
 clicks.subscribe(log('event'))
@@ -189,3 +213,14 @@ retryObsSucceeds.subscribe(log('retry-success'))
 
 const retryObsErrors = retry(3, fail(4))
 retryObsErrors.subscribe(log('retry-fails'))
+
+// of
+const ofObs = of(3)
+ofObs.subscribe(log('of'))
+
+// filter
+const filterObs = filter(
+  x => x > 3,
+  concat(of(4), of(3), of(5))
+)
+filterObs.subscribe(log('filter'))
