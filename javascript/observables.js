@@ -53,6 +53,19 @@ const map = (fn, observer) =>
     })
   )
 
+const fail = (times) => {
+  let left = times
+  return new Observable(o => {
+    if (left > 0) {
+      left--
+      return o.error(new Error('Something bad happened'))
+    }
+
+    o.next()
+    o.complete()
+  })
+}
+
 const concat = (...observables) =>
   new Observable(o => {
     let current
@@ -80,12 +93,41 @@ const concat = (...observables) =>
     }
   })
 
+const retry = (num, observable) =>
+  new Observable(o => {
+    let current
+    const process = num => {
+      current = observable.subscribe({
+        next (x) {
+          o.next(num)
+        },
+        complete () {
+          o.complete()
+        },
+        error (e) {
+          if (num === 0) {
+            return o.error(e)
+          }
+          process(num - 1)
+        }
+      })
+    }
+
+    process(num)
+
+    return {
+      unsubscribe () {
+        current.unsubscribe()
+      }
+    }
+  })
+
 const log = name => ({
   next (x) {
     console.log(`[${name}] [next] ${JSON.stringify(x)}`)
   },
   error (e) {
-    console.error(`[${name}] [error] ${JSON.stringify(e)}`)
+    console.error(`[${name}] [error] ${e}`)
   },
   complete () {
     console.log(`[${name}] [complete]`)
@@ -140,3 +182,10 @@ const concatObs = concat(
   timeout(500), timeout(1), timeout(2), timeout(3)
 )
 concatObs.subscribe(log('concat'))
+
+// retry
+const retryObsSucceeds = retry(3, fail(3))
+retryObsSucceeds.subscribe(log('retry-success'))
+
+const retryObsErrors = retry(3, fail(4))
+retryObsErrors.subscribe(log('retry-fails'))
