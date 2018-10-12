@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "commonjs",
+    "target": "es2017",
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "es2015",
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "moduleResolution": "Node",
+    "sourceMap": true,
+    "allowJs": false,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "types": [
+      "node"
+    ]
+  }
+}
