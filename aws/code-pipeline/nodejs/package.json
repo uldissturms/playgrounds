@@ -1,0 +1,14 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/test-app",
+  "author": "Uldis Sturms <uldis.sturms@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
+  "scripts": {
+    "build": "echo nothing here..."
+  }
+}
