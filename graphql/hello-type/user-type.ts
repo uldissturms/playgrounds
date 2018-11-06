@@ -2,12 +2,12 @@ import { Field, ObjectType } from 'type-graphql'
 
 @ObjectType()
 export class User {
-  @Field()
-  id: string;
+  @Field(() => String)
+  title: string;
 
-  @Field()
+  @Field(() => String)
   name: string;
 
-  @Field()
+  @Field(() => Date)
   created: Date;
 }
