@@ -18,7 +18,7 @@ const UserType = new GraphQLObjectType({
     profession: {
       type: GraphQLString,
       resolve: () => {
-        return 'Sales Manager at:' + new Date();
+        return 'Sales Manager at:' + new Date()
       }
     }
   }
