@@ -15,7 +15,12 @@ const UserType = new GraphQLObjectType({
   fields: {
     id: { type: GraphQLID },
     name: { type: GraphQLString },
-    profession: { type: GraphQLString }
+    profession: {
+      type: GraphQLString,
+      resolve: () => {
+        return 'Sales Manager at:' + new Date();
+      }
+    }
   }
 })
 
@@ -37,8 +42,7 @@ const schema = new GraphQLSchema({
         resolve () {
           return {
             id: '1',
-            name: 'John Doe',
-            profession: 'Sales manager'
+            name: 'John Doe'
           }
         }
       }
@@ -82,4 +86,4 @@ app.use('/graphql-string', grapqlHTTP({
   graphiql: true
 }))
 
-app.listen(3000)
+app.listen(process.env.PORT || 3000)
