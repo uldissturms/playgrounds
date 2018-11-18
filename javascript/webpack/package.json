@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "webpack"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
+}
