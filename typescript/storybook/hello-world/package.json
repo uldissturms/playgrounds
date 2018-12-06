@@ -6,8 +6,10 @@
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
+    "@storybook/addons": "^4.0.12",
     "@storybook/react": "^4.0.12",
     "babel-loader": "^8.0.4",
+    "storybook-addon-jsx": "^6.0.0",
     "webpack": "^4.27.1"
   },
   "dependencies": {
