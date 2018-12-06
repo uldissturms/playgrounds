@@ -13,7 +13,7 @@ storiesOf('button', module)
   .addWithJSX('blue', () =>
     <Button bg='blue'>Hello Blue World!</Button>
   )
-  .addWithJSX('multi-props', withInfo()(() =>
+  .addWithJSX('multi-props', withInfo({ inline: true })(() =>
     <Button
       disabled={boolean('disabled', false)}
       bg={color('background', 'yellow')}>

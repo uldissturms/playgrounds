@@ -1,10 +1,18 @@
 import * as React from 'react'
 
 export interface Props {
+  /** this sets the background color */
   bg: string
-  children: React.ReactNode
+  /** this sets the click action */
   onClick: () => void
+  /**
+   * disables button
+   *
+   * @default false
+   */
   disabled?: boolean
+  /** this sets button text */
+  children: React.ReactNode
 }
 
 const noop = () => {} // tslint:disable-line
