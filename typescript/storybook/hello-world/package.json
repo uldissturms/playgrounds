@@ -1,0 +1,17 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@storybook/react": "^4.0.12",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.27.1"
+  },
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  }
+}
