@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Button } from './Button'
 
-storiesOf('Button', module)
+storiesOf('button', module)
   .add('green', () => (
     <Button bg='green'>Hello Green World!</Button>
   ))
