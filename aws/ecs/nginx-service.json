@@ -1,0 +1,15 @@
+{
+  "cluster": "custom",
+  "serviceName": "nginx-service",
+  "taskDefinition": "nginx",
+  "desiredCount": 1,
+  "loadBalancers": [ {
+    "targetGroupArn": "arn:aws:elasticloadbalancing:eu-west-1:027581334788:targetgroup/nginx-tg/9450cff63b7f7b41",
+    "containerName": "nginx",
+    "containerPort": 80
+  } ],
+  "deploymentConfiguration": {
+    "maximumPercent": 100,
+    "minimumHealthyPercent": 0
+  }
+}

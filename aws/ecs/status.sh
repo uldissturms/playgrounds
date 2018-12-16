@@ -9,7 +9,6 @@ aws ecs list-container-instances --cluster custom | jq
 
 echo '=== ECS tasks ==='
 aws ecs list-task-definitions | jq
-aws ecs list-task-definitions | jq
 
 echo '=== ECS services ==='
 aws ecs list-services --cluster default | jq
