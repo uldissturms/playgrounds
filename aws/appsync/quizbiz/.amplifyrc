@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "quizbiz-20181217210759-authRole",
+            "UnauthRoleArn": "arn:aws:iam::027581334788:role/quizbiz-20181217210759-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::027581334788:role/quizbiz-20181217210759-authRole",
+            "Region": "eu-west-1",
+            "DeploymentBucketName": "quizbiz-20181217210759-deployment",
+            "UnauthRoleName": "quizbiz-20181217210759-unauthRole",
+            "StackName": "quizbiz-20181217210759",
+            "StackId": "arn:aws:cloudformation:eu-west-1:027581334788:stack/quizbiz-20181217210759/d48df8a0-023f-11e9-9f8c-02f06fc717c0"
+        }
+    }
+}
