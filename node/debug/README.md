@@ -6,6 +6,7 @@ A Node.js process started without --inspect can also be instructed to start list
 
 * `node --inspect-brk=0.0.0.0 .` - docker
 * `node --inspect .` - locally
+* `NODE_OPTIONS='--inspect-brk' node foo.js` - using an ENV variable
 
 note: `--inspect-brk` works more reliably with chrome dev tools (v68)
 
