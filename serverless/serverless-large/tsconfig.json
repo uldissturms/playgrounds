@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "es6",
+    "target": "es2015",
+    "allowJs": false,
+    "moduleResolution": "node",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
