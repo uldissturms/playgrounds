@@ -1,0 +1,58 @@
+service: serverless-authorizer
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  hello:
+    handler: index.handler
+    events:
+      - http:
+          path: hello
+          method: GET
+          authorizer:
+            type: COGNITO_USER_POOLS
+            authorizerId:
+              Ref: ApiGatewayAuthorizer
+
+# you can add CloudFormation resource templates here
+resources:
+ Resources:
+   CognitoUserPool:
+     Type: 'AWS::Cognito::UserPool'
+     Properties:
+       MfaConfiguration: OFF
+       UserPoolName: sls-user-pool
+       UsernameAttributes:
+         - email
+       Policies:
+         PasswordPolicy:
+           MinimumLength: 6
+           RequireLowercase: False
+           RequireNumbers: True
+           RequireSymbols: False
+           RequireUppercase: True
+
+   CognitoUserPoolClient:
+     Type: 'AWS::Cognito::UserPoolClient'
+     Properties:
+       ClientName: sls-user-pool-client
+       GenerateSecret: False
+       UserPoolId:
+         Ref: CognitoUserPool
+
+   ApiGatewayAuthorizer:
+     DependsOn:
+        - ApiGatewayRestApi
+     Type: AWS::ApiGateway::Authorizer
+     Properties:
+       Name: sls-cognito-authorizer
+       Type: COGNITO_USER_POOLS
+       IdentitySource: method.request.header.Authorization
+       RestApiId:
+         Ref: ApiGatewayRestApi
+       ProviderARNs:
+         - Fn::GetAtt:
+             - CognitoUserPool
+             - Arn
