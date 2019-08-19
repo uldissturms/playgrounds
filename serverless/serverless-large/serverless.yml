@@ -2,6 +2,7 @@ service: serverless-large-spike
 
 plugins:
   - serverless-webpack
+  # - serverless-parcel
 
 provider:
   name: aws
@@ -49,3 +50,12 @@ custom:
   webpack:
     packager: 'yarn'
     includeModules: true
+    packageModules: true
+  parcel:
+    options:
+      target: node
+      cache: true
+    entries:
+      - file: dummy.ts
+        target: node
+        outFile: dist/dummy.js

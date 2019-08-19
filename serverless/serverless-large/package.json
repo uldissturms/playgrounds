@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.137",
     "fork-ts-checker-webpack-plugin": "^1.5.0",
+    "serverless-parcel": "^1.0.4",
     "serverless-webpack": "^5.3.1",
     "ts-loader": "^6.0.4",
     "typescript": "^3.5.3",
