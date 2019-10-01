@@ -1,0 +1,7 @@
+{
+  "name": "api-b",
+  "version": "0.0.0",
+  "dependencies": {
+    "utils-b": "^0.0.0"
+  }
+}

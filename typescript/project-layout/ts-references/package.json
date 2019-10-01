@@ -1,0 +1,7 @@
+{
+  "name": "ts-namespaces",
+  "private": true,
+  "workspaces": [
+    "packages/**/*"
+  ]
+}
