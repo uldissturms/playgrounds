@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "name": "@spike/two",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "devDependencies": {
+    "@types/node": "^13.9.1",
+    "@yarnpkg/pnpify": "^2.0.0-rc.19"
+  },
+  "scripts": {
+    "build": "tsc --build"
+  }
+}

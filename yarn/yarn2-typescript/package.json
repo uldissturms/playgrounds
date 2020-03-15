@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "name": "yarn2-typescript",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "name": "one",
+  "devDependencies": {
+    "@yarnpkg/pnpify": "^2.0.0-rc.19"
+  },
+  "scripts": {
+    "build": "pnpify tsc --build",
+    "start": "node dist/one.js"
+  },
+  "dependencies": {
+    "@spike/two": "workspace:packages/two"
+  }
+}
